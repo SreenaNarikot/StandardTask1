@@ -13,7 +13,7 @@ namespace MarsQA_1.Feature
         [Given(@"I login to the website")]
         public void GivenILoginToTheWebsite()
         {
-            ScenarioContext.Current.Pending();
+            //login setup in beforescenario
         }
 
     }
