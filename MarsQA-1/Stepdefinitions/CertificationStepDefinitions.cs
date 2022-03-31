@@ -25,15 +25,8 @@ namespace MarsQA_1.StepDefinitions
         [Then(@":The Certification with '([^']*)' ,'([^']*)'\.'([^']*)' details will be createdsuccessfully\.")]
         public void ThenTheCertificationWith_DetailsWillBeCreatedsuccessfully_(string certificate, string from, string year)
         {
-            ////Assertions to verify  certifications
-            //ProfileRecord profileRecord = new ProfileRecord();
-            //string actualCertificate = profileRecord.Getcertficate(driver);
-            ////Assert.That(actualCertificate == certificate , "Actual Certificate  and Expected Certificate do not match");
-            //string actualFrom = profileRecord.GetCertificatefrom(driver);
-            ////Assert.That(actualFrom == from, "Actual certficate from and expected do not match");
-            //string actualYear = profileRecord.GetYearofthecertificate(driver);
-            ////Assert.That(actualYear == year, "Actual Year and expected year do not match");
-            Assert.Pass();
+            ProfileRecord profileRecord =new ProfileRecord();
+            profileRecord.ValidatecreatedCertification(driver,certificate);
         }
     }
 }

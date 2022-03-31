@@ -27,12 +27,7 @@ namespace MarsQA_1.StepDefinitions
         public void ThenTheEducationDetailsWillBeCreatedSuccessfully_(string country, string university, string title, string degree, string p4)
         {
             ProfileRecord profileRecord = new ProfileRecord();
-            //string actualcountry = profileRecord.GetCountry(driver);
-            //string actualUniversity = profileRecord.GetUniversity(driver);  
-            //string actualTitle = profileRecord.GetTitle(driver);
-            //string actualDegree =profileRecord.GetDegree(driver);
-            //string actualGraduationyear = profileRecord.GetGraduationyear(driver);
-            Assert.Pass();
+            profileRecord.ValidatecreatedEducation(driver, title);
         }
     }
 }

@@ -1,19 +1,22 @@
 ﻿using MarsQA_1.Helpers;
 using MarsQA_1.SpecflowPages.Utils;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using RelevantCodes.ExtentReports;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using static MarsQA_1.Helpers.CommonMethods;
 
 namespace MarsQA_1.SpecflowPages.Pages
 {
     internal class ProfileRecord
     {
-        //Scenario1 for Languagetab
+        //Scenario1 for Languagetab - Add Language
         public void Createlanguagerecord(IWebDriver driver, string language, string level)
         {
             Wait.WaitToBeClickable(driver,"//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/thead/tr/th[3]/div",3);
@@ -34,7 +37,44 @@ namespace MarsQA_1.SpecflowPages.Pages
             IWebElement add = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[3]/input[1]"));
             add.Click();
         }
-        //Scenario2 for Languagetab
+        //Validating the created Language
+        public void ValidatecreatedLanguage(IWebDriver driver, string language)
+        {
+            try
+            {
+                IList <IWebElement> titlerows = driver.FindElements(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody"));
+                var rowcount = titlerows.Count();
+                for (int i = 1; i <= rowcount; i++)
+                {
+                    Thread.Sleep(2000);
+                    IWebElement actuallanguages = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[" + i + "]/tr/td[2]"));
+                    string actuallanguage = actuallanguages.Text; 
+                    try
+                    {
+                        if (actuallanguage.Equals(language))
+                        {
+                            CommonMethods.test.Log(LogStatus.Pass, "Test Passed, Updated a Language Successfully");
+                            SaveScreenShotClass.SaveScreenshot(Driver.driver, "Language Updated");
+                            Assert.IsTrue(true);
+                        }
+                    }
+                    catch (Exception ex)
+                    { 
+                        Console.WriteLine(ex.Message,language +"not created");
+                    }
+                    
+                }
+            }
+            catch (Exception e)
+            {
+                CommonMethods.test.Log(LogStatus.Fail, "Test Failed-catch", e.Message);
+            }
+
+
+        }
+
+
+        //Scenario2 for Languagetab - Total Number of records created
         public int ReadLanguagerecord(IWebDriver driver)
         {
             IList<IWebElement> actualLanguages = driver.FindElements(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody"));
@@ -48,7 +88,7 @@ namespace MarsQA_1.SpecflowPages.Pages
 
         }
 
-        //Scenario 3 of the language
+        //Scenario 3 for the Language - Edit a perticular record
         public void EditTheLanguage(IWebDriver driver, string language, string level)
         {
             IWebElement userprofile = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/div[1]/div[2]/div/span"));
@@ -70,12 +110,11 @@ namespace MarsQA_1.SpecflowPages.Pages
             upadate.Click();
            
         }
+        // Language - Identify and return the updated record
         public string GettheEditedlanguagetext(IWebDriver driver,string language)
         {
             HomePage homepage = new HomePage();
             homepage.GoToProfile(driver);
-            //Wait.WaitToBeClickable(driver, "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[1]/tr[1]/td[1]", 10);
-            //IWebElement editedlanguage = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[1]/tr[1]/td[1]"));
             Wait.WaitToBeClickable(driver, "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[1]/tr/td[1]", 10);
             IWebElement editedlanguage = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[1]/tr/td[1]"));
             string editedlanguagetext = editedlanguage.Text;               
@@ -90,7 +129,7 @@ namespace MarsQA_1.SpecflowPages.Pages
             return editedleveltext;
         }
 
-       
+       //Delete the  selected record-language
         public void DeleteRecord(IWebDriver driver)
         {
             IWebElement deletebutton = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[1]/tr/td[3]/span[2]/i"));
@@ -98,14 +137,12 @@ namespace MarsQA_1.SpecflowPages.Pages
         }
         public string Getthedeleted(IWebDriver driver)
         {
-            //Wait.WaitToBeClickable(driver, "//*[@id=,account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]", 30);
-            //IWebElement deletedrecord = driver.FindElement(By.XPath("//*[@id=,account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]"));
             IWebElement deletedrecord = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]"));
             string deletedrecordtext = deletedrecord.Text;               
             return deletedrecordtext;                                    
 
         }
-        //Scnario 1 of the skills record
+        //Scenario1 - Create skills record
         public void Createskillsrecord(IWebDriver driver, string skill, string level)
         {
             //Identify the Skills tab and click on it
@@ -124,12 +161,50 @@ namespace MarsQA_1.SpecflowPages.Pages
             IWebElement addskill = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/span/input[1]"));
             addskill.Click();
         }
+        //Validate the created skills record
+        public void ValidatecreatedSkills(IWebDriver driver, string skill)
+        {
+            try
+            {
+                //Identify the totals rows of the skills record
+                IList<IWebElement> titlerows = driver.FindElements(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody"));
+                var rowcount = titlerows.Count();
+                for (int i = 1; i <= rowcount; i++)
+                {
+                    //Identify the i'th title
+                    IWebElement actualtitles = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[" + i + "]/tr/td[1]"));
+                    string actualtitle = actualtitles.Text;
+                    try
+                    {
+                        if (actualtitle.Equals(skill))
+                        {
+                            CommonMethods.test.Log(LogStatus.Pass, "Test Passed, Updated a Skills Successfully");
+                            SaveScreenShotClass.SaveScreenshot(Driver.driver, "Skills Updated");
+                            Assert.IsTrue(true);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        CommonMethods.test.Log(LogStatus.Fail, "Test Failed");
+                    }
+                       
+                }
+            }
+            catch (Exception e)
+            {
+                CommonMethods.test.Log(LogStatus.Fail, "Test Failed", e.Message);
+            }
+
+
+        }
+
         //Scenario2 of Skills record to read
         public void  Readskillsrecord(IWebDriver driver)
         {
             //tables's Xpath
             //IWebElement table = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[1]/tr"));
-            //to locate rows of table                        //*[@id="account-profile-section"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[2]/tr/td[1]
+
+            //To locate rows of table 
             IList<IWebElement> rows = driver.FindElements(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody"));
             foreach (IWebElement apart in rows)
             {
@@ -139,8 +214,7 @@ namespace MarsQA_1.SpecflowPages.Pages
            
         }
 
-
-        //Scenario 1 of the education
+        //Scenario 1 of the Education
         public void Createeducationtab(IWebDriver driver, string country, string university, string titletab, string degree, string p4)
         {
             //Identify the tab Education and click on it
@@ -169,8 +243,45 @@ namespace MarsQA_1.SpecflowPages.Pages
             IWebElement addeducation = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/div/div[3]/div/input[1]"));
             addeducation.Click();
         }
+        // Validating created Education
+        public void ValidatecreatedEducation(IWebDriver driver, string title)
+        {
+            try
+            {
+                IWebElement educationtab = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[1]/a[3]"));
+                educationtab.Click();
+                IList<IWebElement> titlerows = driver.FindElements(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody"));
+                var rowcount = titlerows.Count();                            
+                for (int i = 1; i <= rowcount; i++)
+                {
+                    IWebElement actualtitles = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[" + i + "]/tr/td[3]"));
+                    string actualtitle = actualtitles.Text;
+                    Console.WriteLine(actualtitle);
+                    try
+                    {
+                        if (actualtitle.Equals(title))
+                        {
+                            CommonMethods.test.Log(LogStatus.Pass, "Test Passed, Updated a Education Successfully");
+                            SaveScreenShotClass.SaveScreenshot(Driver.driver, "Education Updated");
+                            Assert.IsTrue(true);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        CommonMethods.test.Log(LogStatus.Fail, " Updation Validation Test Failed");
+                    }
+                }          
+                       
+            }
+            catch (Exception e)
+            {
+                CommonMethods.test.Log(LogStatus.Fail, "Test Failed", e.Message);
+            }
 
-        //Scenario 1 for the certification
+
+        }
+
+        //Scenario 1 Create Certification
         public void Createcertification(IWebDriver driver, string certificate ,string from, string year)
         {
             Wait.WaitToBeClickable(driver, "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[1]/a[4]", 3);
@@ -192,20 +303,54 @@ namespace MarsQA_1.SpecflowPages.Pages
             addcert.Click();
 
         }
+        //Validating the created record - Certifications
+        public void ValidatecreatedCertification(IWebDriver driver, string certificate)
+        {
+            Wait.WaitToBeClickable(driver, "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[1]/a[4]", 3);
+            //Identify the tap certification and click on it
+            IWebElement certificationTab = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[1]/a[4]"));
+            certificationTab.Click();
+            try
+            {
+                 IList<IWebElement> titlerows = driver.FindElements(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody"));
+                var rowcount = titlerows.Count();
+                for (int i = 1; i <= rowcount; i++)
+                {
+                    IWebElement actualcertificates = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[" + i + "]/tr/td[1]"));
+                    string actualcertificate = actualcertificates.Text;  
+                    Console.WriteLine(actualcertificate);
+                    try
+                    {
+                        if (actualcertificate.Equals(certificate))
+                        {
+                            CommonMethods.test.Log(LogStatus.Pass, "Test Passed, Updated a Certificate Successfully");
+                            SaveScreenShotClass.SaveScreenshot(Driver.driver, "CertificateUpdated");
+                            Assert.IsTrue(true);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        CommonMethods.test.Log(LogStatus.Fail, "Test Failed");
+                    }
+                        
+                }
+            }
+            catch (Exception e)
+            {
+                CommonMethods.test.Log(LogStatus.Fail, "Test Failed", e.Message);
+            }
+
+
+        }
+
+
+
         //Methods for Assertions
         public string GetLanguage(IWebDriver driver)
         {
-            //IWebElement profile = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[1]/a[1]"));
-            //profile.Click(); 
-
-            IWebElement actualLanguage = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]"));
-            //IList<IWebElement> actualLanguages = driver.FindElements(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody"));
-            //Console.WriteLine(actualLanguages.Count);
-            //foreach (IWebElement aPart in actualLanguages)
-            //{
-            //    Console.WriteLine(aPart.Text);
-            //}
-            
+             IWebElement actualLanguage = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]"));
+            IList<IWebElement> actualLanguages = driver.FindElements(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody"));
+            Console.WriteLine(actualLanguages.Count);
             return actualLanguage.Text;
         }
         public string GetLanguageLevel(IWebDriver driver)
@@ -216,9 +361,6 @@ namespace MarsQA_1.SpecflowPages.Pages
 
         public string GetSkill(IWebDriver driver)
         {
-            //Wait.WaitToBeClickable(driver, "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[1]/a[2]", 3);
-            //IWebElement skillstab = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[1]/a[2]"));
-            //skillstab.Click();
             IWebElement skill = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[1]"));
             return skill.Text;
 
@@ -230,8 +372,6 @@ namespace MarsQA_1.SpecflowPages.Pages
         }
         public string Getcertficate(IWebDriver driver)
         {
-            //IWebElement certificationTab = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[1]/a[4]"));
-            //certificationTab.Click();
             IWebElement certificate = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/table/tbody/tr/td[1]"));
             return certificate.Text;
         }
@@ -269,6 +409,6 @@ namespace MarsQA_1.SpecflowPages.Pages
        {
             IWebElement graduationYear = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/table/tbody/tr/td[5]"));
             return graduationYear.Text;
-        }
+       }
     }
 }

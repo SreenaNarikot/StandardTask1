@@ -1,11 +1,9 @@
-﻿Feature: Creating the Language in the Profile page with valid credentials
-
-
+﻿Feature: Creating the Language in the Profile page with valid data
 
 Scenario Outline: 1.Creating a new Language details
 	Given : I am on my Profile Page
 	When  : I click new language with valid '<language>' and '<level>' details
-	Then : The Language details with '<language>' and '<level>' will be created successfully.
+	Then : The '<language>' details  will be created successfully.
 
 
 Examples: 
@@ -13,14 +11,12 @@ Examples:
           | English  | Basic  |
           | French   | Fluent |
 
-Scenario Outline: 2.Reading the record created for Language
+Scenario Outline: 2.Counting  the record created for Language
 Given : I am on my Profile Page
 Then : '<count>' Records must have been created successfully
 Examples: 
 | count |
 | 2     |
-
-
 
 Scenario Outline: 3.Editing languges that has been created
 Given : I am on my Profile Page

@@ -26,15 +26,9 @@ namespace MarsQA_1.StepDefinitions
         [Then(@":The Skills details with '([^']*)' and '([^']*)' will be created successfully\.")]
         public void ThenTheSkillsDetailsWithAndWillBeCreatedSuccessfully_(string skill, string level)
         {
-            //Assertions to verify the skills created
             ProfileRecord profileRecord = new ProfileRecord();
-            string actualskill = profileRecord.GetSkill(driver);
-            //Assert.That(actualskill == skill, "Actual Skill and Expected skill do not match");
-            string actualskilllevel = profileRecord.GetSkillLevel(driver);
-            //Assert.That(actualskilllevel == level, "Actual Skill and Expected skill level do not match");
-            Assert.Pass();
+            profileRecord.ValidatecreatedSkills(driver, skill);
         }
-
 
         [When(@": I Click on skills tab")]
         public void WhenIClickOnSkillsTab()

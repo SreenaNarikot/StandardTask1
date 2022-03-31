@@ -26,14 +26,13 @@ namespace MarsQA_1.Stepdefinitions
             ProfileRecord profileRecord = new ProfileRecord();
             profileRecord.Createlanguagerecord(driver,language,level);
         }
-        
        
-
-
-        [Then(@": The Language details with '([^']*)' and '([^']*)' will be created successfully\.")]
-        public void ThenTheLanguageDetailsWithAndWillBeCreatedSuccessfully_(string language, string level)
+        [Then(@": The '([^']*)' details  will be created successfully\.")]
+        public void ThenTheDetailsWillBeCreatedSuccessfully_(string language)
         {
-             Assert.Pass();
+            ProfileRecord profileRecord = new ProfileRecord();
+            profileRecord.ValidatecreatedLanguage(driver, language);
+
         }
 
         [Then(@": '([^']*)' Records must have been created successfully")]

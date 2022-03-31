@@ -161,11 +161,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SpecflowPages\Pages\ManageListings.cs" />
+    <Compile Include="SpecflowPages\Pages\Shareskill.cs" />
     <Compile Include="SpecflowPages\Utils\Wait.cs" />
     <Compile Include="Stepdefinitions\CertificationStepDefinitions.cs" />
+    <Compile Include="Stepdefinitions\LoginStepDefinitions.cs" />
+    <Compile Include="Stepdefinitions\ShareSkillStepdefinitons.cs" />
     <Compile Include="Stepdefinitions\EducationStepDefinitions.cs" />
     <Compile Include="Stepdefinitions\Languagestepdefinitions.cs" />
-    <Compile Include="Stepdefinitions\Login.cs" />
     <Compile Include="SpecflowPages\Helpers\CommonMethods.cs" />
     <Compile Include="SpecflowPages\Helpers\ConstantHelpers.cs" />
     <Compile Include="SpecflowPages\Helpers\Driver.cs" />
@@ -183,6 +186,7 @@
     <None Include="Feature\Education.feature" />
     <None Include="Feature\Language.feature" />
     <None Include="Feature\Login.feature" />
+    <None Include="Feature\shareskill.feature" />
     <None Include="Feature\Skills.feature" />
     <None Include="SpecflowTests\Data\Data.xlsx" />
     <None Include="packages.config" />

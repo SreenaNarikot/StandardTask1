@@ -27,6 +27,12 @@ namespace MarsQA_1.SpecflowPages.Pages
             IWebElement skillstab = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[1]/a[2]"));
             skillstab.Click();
         }
+        public void GoToShareSkill(IWebDriver driver) 
+        {
+            IWebElement shareSkill = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[1]/div/div[2]/a"));
+            shareSkill.Click();
+        }
+
         
     }
 }

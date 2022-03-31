@@ -17,5 +17,17 @@ namespace MarsQA_1.SpecflowPages.Utils
             
            
         }
+        public static void WaitToBeVisible(IWebDriver driver, string locatorValue, int seconds)
+        {
+            var wait = new WebDriverWait(driver, new TimeSpan(0, 0, seconds));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("locatorvalue")));
+           
+
+        }
+        //Implicit Wait
+        public static void TurnOnWaitIAlert(IWebDriver driver)
+        {
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+        }
     }
 }
