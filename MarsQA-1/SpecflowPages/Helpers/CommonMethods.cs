@@ -48,7 +48,7 @@ namespace MarsQA_1.Helpers
 
         public static void ExtentReports()
         {
-            Extent = new ExtentReports(ConstantHelpers.ReportsPath, true, DisplayOrder.NewestFirst);
+            Extent = new ExtentReports(ConstantHelpers.ReportsPath, false, DisplayOrder.NewestFirst);
             Extent.LoadConfig(ConstantHelpers.ReportXMLPath);
         }
     }

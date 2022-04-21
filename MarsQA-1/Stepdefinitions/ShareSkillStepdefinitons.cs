@@ -101,9 +101,10 @@ namespace MarsQA_1.StepDefinitions
             try
             {
                 ManageListings manageListings = new ManageListings();
-                string deletedmessage = manageListings.deletePopupmessage(driver);
+                string deletedmessage = manageListings.DeletePopupmessage(driver);
                 string actualmesage = title + " has been deleted";
                 Assert.AreEqual(actualmesage, deletedmessage);
+                CommonMethods.test.Log(LogStatus.Pass, "Record deleted");
             }
             catch (Exception e)
             {

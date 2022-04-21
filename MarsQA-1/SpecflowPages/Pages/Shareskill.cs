@@ -70,25 +70,27 @@ namespace MarsQA_1.SpecflowPages.Pages
             endDate.Click();
             endDate.SendKeys(enddate);
 
-            //Identify the day 
-            if (selectday == "Mon")
-            {
-                IWebElement mon = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[7]/div[2]/div/div[3]/div[1]/div/input"));
-                mon.Click();
+            //Identify the day ,starttime and end time
+            selectdayandtime(driver,selectday,starttime,endtime);
+
+            //if (selectday == "Mon")
+            //{
+            //    IWebElement mon = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[7]/div[2]/div/div[3]/div[1]/div/input"));
+            //    mon.Click();
 
 
-                //Identify the start time and insert value
-                IWebElement selectStarttime = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[7]/div[2]/div/div[3]/div[2]/input"));
-                selectStarttime.Click();
-                selectStarttime.SendKeys(starttime);
+            //    //Identify the start time and insert value
+            //    IWebElement selectStarttime = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[7]/div[2]/div/div[3]/div[2]/input"));
+            //    selectStarttime.Click();
+            //    selectStarttime.SendKeys(starttime);
 
 
-                //Identify the endtime and Insert value
-                IWebElement selectEndTime = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[7]/div[2]/div/div[3]/div[3]/input"));
-                selectEndTime.Click();
-                selectEndTime.SendKeys(endtime);
+            //    //Identify the endtime and Insert value
+            //    IWebElement selectEndTime = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[7]/div[2]/div/div[3]/div[3]/input"));
+            //    selectEndTime.Click();
+            //    selectEndTime.SendKeys(endtime);
 
-            }
+            //}
 
             //Identify the Skill Exchange button under skill trade and click
             IWebElement selectSkillTrade = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[8]/div[2]/div/div[1]/div/input"));
@@ -108,6 +110,37 @@ namespace MarsQA_1.SpecflowPages.Pages
             IWebElement savebutton = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[11]/div/input[1]"));
             savebutton.Click();
         }
+
+        //Common method to select Day and its start and end time
+        public void selectdayandtime(IWebDriver driver,string selectday,string starttime ,string endtime)
+        {
+            for (int row = 2; row <= 8; row++)
+            {
+                var day = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[7]/div[2]/div/div["+ row +"]/div[1]/div/input"));
+
+                //Identify the start time 
+                IWebElement selectStarttime = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[7]/div[2]/div/div["+ row + "]/div[2]/input"));
+        
+                //Identify the endtime 
+                IWebElement selectEndTime = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[7]/div[2]/div/div[" + row + "]/div[3]/input"));
+ 
+                //var label = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[7]/div[2]/div/div["+ row + "]/div[1]/div/label/text()"));
+                //var label = driver.FindElement(By.XPath("//div[@class='fields'][" + (2 + i) + "]/div/div//label"));
+                var label = driver.FindElement(By.XPath("//div[@class='fields']["+ row +"]/div/div//label"));
+                if (selectday == label.Text)
+                {
+                    day.Click();
+                    selectStarttime.Click();
+                    //input value to startdate
+                    selectStarttime.SendKeys(starttime);
+                    selectEndTime.Click();
+                    //inputvalue to endtime
+                    selectEndTime.SendKeys(endtime);
+                }
+
+            }
+        }
+
         //Validating the created shareskill
         public void validatecreatedSharelisting(IWebDriver driver, string title)
         {

@@ -126,7 +126,7 @@ namespace MarsQA_1.SpecflowPages.Pages
                 }
 
         }
-        public string deletePopupmessage(IWebDriver driver)
+        public string DeletePopupmessage(IWebDriver driver)
         {
             Wait.WaitToBeClickable(driver, "//div[@class='ns-box ns-growl ns-effect-jelly ns-type-success ns-show']", 3);
             //Identify the element Add new button and click on it
