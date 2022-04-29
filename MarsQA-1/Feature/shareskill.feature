@@ -9,8 +9,8 @@ Scenario Outline: 1.Creating a new ShareSkill details
 
 Examples: 
           | title    | Description                    | Category           | Subcategory | Tags     | Service Type         | Location Type | Startdate | Enddate    | Selectday | Starttime | Endtime  | Skill Trade    | Skill-Exchange | Active |
-          | Selenium | This is a course for Beginners | Programming & Tech | QA          | Testing  | One-off service      | On-site       | 12/4/2022 | 12/5/2022  | Mon       | 15:00:00  | 16:00:00 | Skill-Exchange | Skill-Exchange | Hidden |
-          | SQL      | Introduction to SQL            | Programming & Tech | Databases   | database | Hourly basis service | Online        | 12/9/2022 | 12/10/2022 | mon       | 15:00:00  | 16:00:00 | Skill-Exchange | Skill-Exchange | Hidden |
+          | Selenium | This is a course for Beginners | Programming & Tech | QA          | Testing  | One-off service      | On-site       | 12/8/2022 | 12/5/2022  | Mon       | 15:00:00  | 16:00:00 | Skill-Exchange | Skill-Exchange | Hidden |
+          | SQL      | Introduction to SQL            | Programming & Tech | Databases   | database | Hourly basis service | Online        | 12/10/2022 | 12/10/2022 | mon       | 15:00:00  | 16:00:00 | Skill-Exchange | Skill-Exchange | Hidden |
 
 Scenario Outline: 2.Creating a Shareskill without mandatory details
 Given : I am on my Profile Page

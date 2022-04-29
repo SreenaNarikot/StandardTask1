@@ -1,4 +1,5 @@
-﻿using MarsQA_1.Helpers;
+﻿using AutoItX3Lib;
+using MarsQA_1.Helpers;
 using MarsQA_1.SpecflowPages.Utils;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -6,6 +7,7 @@ using OpenQA.Selenium.Support.UI;
 using RelevantCodes.ExtentReports;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -73,25 +75,6 @@ namespace MarsQA_1.SpecflowPages.Pages
             //Identify the day ,starttime and end time
             selectdayandtime(driver,selectday,starttime,endtime);
 
-            //if (selectday == "Mon")
-            //{
-            //    IWebElement mon = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[7]/div[2]/div/div[3]/div[1]/div/input"));
-            //    mon.Click();
-
-
-            //    //Identify the start time and insert value
-            //    IWebElement selectStarttime = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[7]/div[2]/div/div[3]/div[2]/input"));
-            //    selectStarttime.Click();
-            //    selectStarttime.SendKeys(starttime);
-
-
-            //    //Identify the endtime and Insert value
-            //    IWebElement selectEndTime = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[7]/div[2]/div/div[3]/div[3]/input"));
-            //    selectEndTime.Click();
-            //    selectEndTime.SendKeys(endtime);
-
-            //}
-
             //Identify the Skill Exchange button under skill trade and click
             IWebElement selectSkillTrade = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[8]/div[2]/div/div[1]/div/input"));
             selectSkillTrade.Click();
@@ -100,6 +83,9 @@ namespace MarsQA_1.SpecflowPages.Pages
             IWebElement skillExchangetag = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[8]/div[4]/div/div/div/div/div/input"));
             skillExchangetag.SendKeys(skillexchange);
             skillExchangetag.SendKeys(Keys.Enter);
+
+            //FileUpload
+            SamplefileUpload(driver);
 
             //Identify the element 'hidden' in the Active
             IWebElement hiddenbutton = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[10]/div[2]/div/div[2]/div/input"));
@@ -124,8 +110,6 @@ namespace MarsQA_1.SpecflowPages.Pages
                 //Identify the endtime 
                 IWebElement selectEndTime = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[7]/div[2]/div/div[" + row + "]/div[3]/input"));
  
-                //var label = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[7]/div[2]/div/div["+ row + "]/div[1]/div/label/text()"));
-                //var label = driver.FindElement(By.XPath("//div[@class='fields'][" + (2 + i) + "]/div/div//label"));
                 var label = driver.FindElement(By.XPath("//div[@class='fields']["+ row +"]/div/div//label"));
                 if (selectday == label.Text)
                 {
@@ -140,7 +124,18 @@ namespace MarsQA_1.SpecflowPages.Pages
 
             }
         }
-
+        //Method for File Upload
+       public void SamplefileUpload(IWebDriver driver)
+        {
+            IWebElement fileUpload = driver.FindElement(By.XPath("//i[@class='huge plus circle icon padding-25']"));
+            fileUpload.Click();
+            AutoItX3 autoIt = new AutoItX3();
+            autoIt.WinActivate("Open");
+            Thread.Sleep(1000);
+            autoIt.Send(Path.GetFullPath(ConstantHelpers.Filepath));
+            Thread.Sleep(2000);
+            autoIt.Send("{ENTER}");
+        }
         //Validating the created shareskill
         public void validatecreatedSharelisting(IWebDriver driver, string title)
         {

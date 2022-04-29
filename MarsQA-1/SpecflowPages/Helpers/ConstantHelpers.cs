@@ -22,5 +22,9 @@ namespace MarsQA_1.Helpers
 
         //ReportXML Path
         public static string ReportXMLPath = Currentpath + @"MarsQA-1\TestReports" + "ExtentReport_Config.xml";
+
+        //Filpath for Samplefile upload
+        public static string Filepath = Currentpath + @"MarsQA-1\WorkSample\Samplefile";
+
     }
 }
