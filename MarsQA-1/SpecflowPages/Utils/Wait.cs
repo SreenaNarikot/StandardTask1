@@ -25,9 +25,9 @@ namespace MarsQA_1.SpecflowPages.Utils
 
         }
         //Implicit Wait
-        public static void TurnOnWaitIAlert(IWebDriver driver)
+        public static void TurnOnWaitIAlert(IWebDriver driver,int time)
         {
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(time);
         }
     }
 }

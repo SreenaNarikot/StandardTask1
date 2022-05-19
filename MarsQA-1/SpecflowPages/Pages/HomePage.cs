@@ -13,23 +13,27 @@ namespace MarsQA_1.SpecflowPages.Pages
 {
     internal class HomePage
     {
-        public void GoToProfile(IWebDriver driver)
+        private IWebDriver driver;
+        public HomePage(IWebDriver driver)
         {
-
+            this.driver = driver;
+        }
+        IWebElement profile => driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[1]/div/a[2]"));
+        IWebElement skillstab => driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[1]/a[2]"));
+        IWebElement shareSkill => driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[1]/div/div[2]/a"));
+        public void GoToProfile()
+        {
             //Identify the element profile tab and click on it
             Wait.WaitToBeClickable(driver, "//*[@id='account-profile-section']/div/section[1]/div/a[2]", 3);
-            IWebElement profile = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[1]/div/a[2]"));
             profile.Click();                                   
         }
         
-        public void GoToSkillstab(IWebDriver driver)
+        public void GoToSkillstab()
         {
-            IWebElement skillstab = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[1]/a[2]"));
             skillstab.Click();
         }
-        public void GoToShareSkill(IWebDriver driver) 
+        public void GoToShareSkill() 
         {
-            IWebElement shareSkill = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[1]/div/div[2]/a"));
             shareSkill.Click();
         }
 

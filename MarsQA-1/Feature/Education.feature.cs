@@ -20,8 +20,9 @@ namespace MarsQA_1.Feature
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Creating the Education in the Profile page with valid credentials Education")]
-    public partial class CreatingTheEducationInTheProfilePageWithValidCredentialsEducationFeature
+    [NUnit.Framework.DescriptionAttribute("Education - Creating the Education in the Profile page with valid credentials Edu" +
+        "cation")]
+    public partial class Education_CreatingTheEducationInTheProfilePageWithValidCredentialsEducationFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -35,7 +36,8 @@ namespace MarsQA_1.Feature
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Feature", "Creating the Education in the Profile page with valid credentials Education", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Feature", "Education - Creating the Education in the Profile page with valid credentials Edu" +
+                    "cation", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -75,9 +77,9 @@ namespace MarsQA_1.Feature
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Creating a new Education details")]
-        [NUnit.Framework.TestCaseAttribute("Singapore", "NUS", "B.Tech", "ComputerScience", "2020", null)]
-        [NUnit.Framework.TestCaseAttribute("India", "LBS", "B.Sc", "Mathematics", "2018", null)]
-        public virtual void CreatingANewEducationDetails(string country, string university, string title, string degree, string graduationYear, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("Singapore", "NUS", "B.Tech", "ComputerScience", "2020", "Education has been added", null)]
+        [NUnit.Framework.TestCaseAttribute("India", "LBS", "B.Sc", "Mathematics", "2018", "Education has been added", null)]
+        public virtual void CreatingANewEducationDetails(string country, string university, string title, string degree, string graduationYear, string message, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
@@ -86,6 +88,7 @@ namespace MarsQA_1.Feature
             argumentsOfScenario.Add("Title", title);
             argumentsOfScenario.Add("Degree", degree);
             argumentsOfScenario.Add("Graduation Year", graduationYear);
+            argumentsOfScenario.Add("message", message);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Creating a new Education details", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
@@ -114,8 +117,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When(string.Format(": I Click Add new Education with \'{0}\' ,\'{1}\',\'{2}\',\'{3}\', \'{4}\' details", country, university, title, degree, graduationYear), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 8
- testRunner.Then(string.Format(": The Education details \'{0}\' ,\'{1}\',\'{2}\',\'{3}\', \'{4}\'will be created successful" +
-                            "ly.", country, university, title, degree, graduationYear), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format(": The Education details will be created successfully with \'{0}\' displayed.", message), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

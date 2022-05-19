@@ -1,5 +1,7 @@
+using MarsQA_1.Helpers;
 using MarsQA_1.Pages;
 using NUnit.Framework;
+using RelevantCodes.ExtentReports;
 using System;
 using TechTalk.SpecFlow;
 
@@ -16,9 +18,10 @@ namespace MarsQA_1.StepDefinitions
 
         [Then(@": then the error message'([^']*)' should be displayed")]
         public void ThenThenTheErrorMessageShouldBeDisplayed(string p0)
-        {
-           string actualmessage = SignIn.Geterrormessage();
-           Assert.AreEqual(p0, actualmessage);
+        { 
+            string actualmessage = SignIn.Geterrormessage();
+            Assert.AreEqual(p0, actualmessage);
+            CommonMethods.test.Log(LogStatus.Pass, "Test Passed,Login error message displayed");
         }
     }
 }
