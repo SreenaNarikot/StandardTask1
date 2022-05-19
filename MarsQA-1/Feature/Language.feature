@@ -5,7 +5,6 @@ Scenario Outline: 1.Creating a new Language details
 	When  : I click new language with valid '<language>' and '<level>' details
 	Then : The '<language>' details  will be created successfully.
 
-
 Examples: 
           | language | level  |
           | English  | Basic  |
@@ -27,14 +26,8 @@ Examples:
 | Hindi     | Fluent |
 | Spanish   | Basic  |
 
-Scenario Outline: 4.Reading the language that has been edited
-Given : I am on my Profile Page
-Then : the record is updated with new details '<language>' ,'<level>'.
-Examples: 
-| language | level  |
-| Spanish  | Basic  |
 
-Scenario Outline: 5.Deleting a record from the languagetab
+Scenario Outline: 4.Deleting a record from the languagetab
 Given : I am on my Profile Page
 When : I click delete button
 Then : The record '<language>'will be deleted

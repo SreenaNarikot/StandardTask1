@@ -166,6 +166,7 @@
     <Compile Include="SpecflowPages\Utils\Wait.cs" />
     <Compile Include="Stepdefinitions\CertificationStepDefinitions.cs" />
     <Compile Include="Stepdefinitions\LoginStepDefinitions.cs" />
+    <Compile Include="Stepdefinitions\ManageListingStepdefinitions.cs" />
     <Compile Include="Stepdefinitions\ShareSkillStepdefinitons.cs" />
     <Compile Include="Stepdefinitions\EducationStepDefinitions.cs" />
     <Compile Include="Stepdefinitions\Languagestepdefinitions.cs" />
@@ -186,6 +187,7 @@
     <None Include="Feature\Education.feature" />
     <None Include="Feature\Language.feature" />
     <None Include="Feature\Login.feature" />
+    <None Include="Feature\ManageListings.feature" />
     <None Include="Feature\shareskill.feature" />
     <None Include="Feature\Skills.feature" />
     <None Include="SpecflowTests\Data\Data.xlsx" />

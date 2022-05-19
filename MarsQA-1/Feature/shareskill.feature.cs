@@ -75,8 +75,8 @@ namespace MarsQA_1.Feature
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("1.Creating a new ShareSkill details")]
-        [NUnit.Framework.TestCaseAttribute("Selenium", "This is a course for Beginners", "Programming & Tech", "QA", "Testing", "One-off service", "On-site", "12/8/2022", "12/5/2022", "Mon", "15:00:00", "16:00:00", "Skill-Exchange", "Skill-Exchange", "Hidden", null)]
-        [NUnit.Framework.TestCaseAttribute("SQL", "Introduction to SQL", "Programming & Tech", "Databases", "database", "Hourly basis service", "Online", "12/10/2022", "12/10/2022", "mon", "15:00:00", "16:00:00", "Skill-Exchange", "Skill-Exchange", "Hidden", null)]
+        [NUnit.Framework.TestCaseAttribute("Selenium", "This is a course for Beginners", "Programming & Tech", "QA", "Testing", "One-off service", "On-site", "12/11/2022", "12/12/2022", "Mon", "15:00:00", "16:00:00", "Skill-Exchange", "Skill-Exchange", "Hidden", "Service Listing Added successfully", null)]
+        [NUnit.Framework.TestCaseAttribute("SQL", "Introduction to SQL", "Programming & Tech", "Databases", "database", "Hourly basis service", "Online", "12/10/2022", "12/10/2022", "mon", "15:00:00", "16:00:00", "Skill-Exchange", "Skill-Exchange", "Hidden", "Service Listing Added successfully", null)]
         public virtual void _1_CreatingANewShareSkillDetails(
                     string title, 
                     string description, 
@@ -93,6 +93,7 @@ namespace MarsQA_1.Feature
                     string skillTrade, 
                     string skill_Exchange, 
                     string active, 
+                    string message, 
                     string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -112,6 +113,7 @@ namespace MarsQA_1.Feature
             argumentsOfScenario.Add("Skill Trade", skillTrade);
             argumentsOfScenario.Add("Skill-Exchange", skill_Exchange);
             argumentsOfScenario.Add("Active", active);
+            argumentsOfScenario.Add("message", message);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("1.Creating a new ShareSkill details", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
@@ -141,7 +143,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "}\',\'{8}\',  \'{9}\',\'{10}\',\'{11}\',\'{12}\',\'{13}\',\'{14}\' details", title, description, category, subcategory, tags, serviceType, locationType, startdate, enddate, selectday, starttime, endtime, skillTrade, skill_Exchange, active), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 8
- testRunner.Then(string.Format(": details will be created successfully with \'{0}\'", title), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format(": details will be created successfully with \'{0}\'", message), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -218,131 +220,6 @@ testRunner.When(string.Format(": I click Save sharekill with out mandatory detai
 #line hidden
 #line 18
 testRunner.Then(string.Format(": I should get the \'{0}\' displayed.", errormessage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("3.Listing all the ShareSkillcreated under ManageListing")]
-        public virtual void _3_ListingAllTheShareSkillcreatedUnderManageListing()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("3.Listing all the ShareSkillcreated under ManageListing", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 25
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 26
-testRunner.Given(": I am on my Profile Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 27
-testRunner.When(": I Click managelistings tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 28
-testRunner.Then(": I should be able to see all the shareskill listings", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("4.Editing the ShareSkill under manage listings")]
-        [NUnit.Framework.TestCaseAttribute("Selenium", "MySQL", null)]
-        public virtual void _4_EditingTheShareSkillUnderManageListings(string title, string newtitle, string[] exampleTags)
-        {
-            string[] tagsOfScenario = exampleTags;
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("title", title);
-            argumentsOfScenario.Add("newtitle", newtitle);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("4.Editing the ShareSkill under manage listings", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 30
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 31
-testRunner.Given(": I am on my Profile Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 32
-testRunner.When("I Click editbutton of a skillshare listing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 33
-testRunner.Then(string.Format(":I should be able to to change from \'{0}\' to new \'{1}\'", title, newtitle), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("5.Deleting the ShareSkill under manageshareskill")]
-        [NUnit.Framework.TestCaseAttribute("SQL", null)]
-        public virtual void _5_DeletingTheShareSkillUnderManageshareskill(string title, string[] exampleTags)
-        {
-            string[] tagsOfScenario = exampleTags;
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("title", title);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("5.Deleting the ShareSkill under manageshareskill", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 39
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 40
-testRunner.Given(": I am on my Profile Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 41
-testRunner.When(string.Format(": I click delete button under shareskills which has \'{0}\' as title", title), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 42
-testRunner.Then(string.Format(": ShareSkill with the \'{0}\' must be deleted successfully", title), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

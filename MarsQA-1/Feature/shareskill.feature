@@ -5,12 +5,12 @@
 Scenario Outline: 1.Creating a new ShareSkill details
 	Given : I am on my Profile Page
 	When  : I click new shareskill with valid '<title>','<Description>','<Category>','<Subcategory>','<Tags>','<Service Type>','<Location Type>','<Startdate>','<Enddate>',  '<Selectday>','<Starttime>','<Endtime>','<Skill Trade>','<Skill-Exchange>','<Active>' details
-	Then : details will be created successfully with '<title>'
+	Then : details will be created successfully with '<message>'
 
 Examples: 
-          | title    | Description                    | Category           | Subcategory | Tags     | Service Type         | Location Type | Startdate | Enddate    | Selectday | Starttime | Endtime  | Skill Trade    | Skill-Exchange | Active |
-          | Selenium | This is a course for Beginners | Programming & Tech | QA          | Testing  | One-off service      | On-site       | 12/8/2022 | 12/5/2022  | Mon       | 15:00:00  | 16:00:00 | Skill-Exchange | Skill-Exchange | Hidden |
-          | SQL      | Introduction to SQL            | Programming & Tech | Databases   | database | Hourly basis service | Online        | 12/10/2022 | 12/10/2022 | mon       | 15:00:00  | 16:00:00 | Skill-Exchange | Skill-Exchange | Hidden |
+          | title    | Description                    | Category           | Subcategory | Tags     | Service Type         | Location Type | Startdate  | Enddate    | Selectday | Starttime | Endtime  | Skill Trade    | Skill-Exchange | Active | message                            |
+          | Selenium | This is a course for Beginners | Programming & Tech | QA          | Testing  | One-off service      | On-site       | 12/11/2022 | 12/12/2022 | Mon       | 15:00:00  | 16:00:00 | Skill-Exchange | Skill-Exchange | Hidden | Service Listing Added successfully |
+          | SQL      | Introduction to SQL            | Programming & Tech | Databases   | database | Hourly basis service | Online        | 12/10/2022 | 12/10/2022 | mon       | 15:00:00  | 16:00:00 | Skill-Exchange | Skill-Exchange | Hidden | Service Listing Added successfully |
 
 Scenario Outline: 2.Creating a Shareskill without mandatory details
 Given : I am on my Profile Page
@@ -22,28 +22,6 @@ Examples:
 | Java  | This is a course for Beginners | Programming & Tech | Databases   |      |              |               |           |         |           |           |         |             |                |        | Please complete the form correctly. |
 
 
-Scenario:3.Listing all the ShareSkillcreated under ManageListing
-Given : I am on my Profile Page
-When : I Click managelistings tab
-Then : I should be able to see all the shareskill listings
-
-Scenario Outline: 4.Editing the ShareSkill under manage listings
-Given : I am on my Profile Page
-When I Click editbutton of a skillshare listing
-Then :I should be able to to change from '<title>' to new '<newtitle>'
-
-Examples: 
-| title | newtitle |
-| Selenium   | MySQL    |
-
-Scenario Outline: 5.Deleting the ShareSkill under manageshareskill
-Given : I am on my Profile Page
-When : I click delete button under shareskills which has '<title>' as title
-Then : ShareSkill with the '<title>' must be deleted successfully
-
-Examples: 
-| title |
-| SQL |
 
 
 

@@ -18,87 +18,120 @@ namespace MarsQA_1.SpecflowPages.Pages
 {
     internal class Shareskill
     {
-        public void CreateShareSkill(IWebDriver driver, string title, string description, string category, string subcategory, string tags, string servicetype, string locationtype, string startdate, string enddate, string selectday, string starttime, string endtime, string skilltrade, string skillexchange, string active)
+        private IWebDriver driver;
+        public Shareskill(IWebDriver driver)
         {
-            // Identify the textbox title
-         
-            IWebElement addtitle = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[1]/div/div[2]/div/div[1]/input"));
+            this.driver = driver;
+        }
+        //SHARESKILL LOCATORS
+        //Locate title button
+        IWebElement addtitle => driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[1]/div/div[2]/div/div[1]/input"));
+        //Locate the textbox description
+        IWebElement adddescription => driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[2]/div/div[2]/div[1]/textarea"));
+        //Locate category dropdown
+        IWebElement categorydropdown => driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[3]/div[2]/div/div/select"));
+        //Locate the element subcategory dropdown
+        IWebElement subcategorydropdown => driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[3]/div[2]/div/div[2]/div[1]/select"));
+        //Locate the element tags textbox
+        IWebElement tagstextbox => driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[4]/div[2]/div/div/div/div/input"));
+        //Locate the radio button one-off service
+        IWebElement oneOffService => driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[5]/div[2]/div[1]/div[2]/div/input"));
+        //Locate the radiobutton On-Site
+        IWebElement onSite => driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[5]/div[2]/div[1]/div[2]/div/input"));
+        //Locate the element startdate
+        IWebElement startDate => driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[7]/div[2]/div/div[1]/div[2]/input"));
+        //Locate the element Enddate
+        IWebElement endDate => driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[7]/div[2]/div/div[1]/div[4]/input"));
+        //Locate Skill exchange under skilltrade
+        IWebElement selectSkillTrade => driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[8]/div[2]/div/div[1]/div/input"));
+        //Locate the tag skillexchangetextbox
+        IWebElement skillExchangetag => driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[8]/div[4]/div/div/div/div/div/input"));
+        //Locate the hidden
+        IWebElement hiddenbutton => driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[10]/div[2]/div/div[2]/div/input"));
+        //Locate Save button
+        IWebElement savebutton => driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[11]/div/input[1]"));
+        //Locating the message for shareskill creation
+        IWebElement messagedisplayed => driver.FindElement(By.XPath("//div[text()='Service Listing Added successfully']"));
+
+        public void CreateShareSkill(string title, string description, string category, string subcategory, string tags, string servicetype, string locationtype, string startdate, string enddate, string selectday, string starttime, string endtime, string skilltrade, string skillexchange, string active)
+        {
+            // click title and input values
             addtitle.Click();
             addtitle.SendKeys(title);
 
-            //Identify the textbox Description
-            IWebElement adddescription = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[2]/div/div[2]/div[1]/textarea"));
+            //Input values to description
             adddescription.SendKeys(description);
 
-            //Identify the dropdown category
-            IWebElement categorydropdown = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[3]/div[2]/div/div/select")); 
+            //Click the dropdown category and slect the required value
             categorydropdown.Click();
             SelectElement selectcategory = new SelectElement(categorydropdown);
             selectcategory.SelectByText(category);
 
-            //Identify the dropdown subcategory and selct by text
-            IWebElement subcategorydropdown = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[3]/div[2]/div/div[2]/div[1]/select"));
+            //Click the dropdown subcategory and selct by text
             subcategorydropdown.Click();
             SelectElement selectsubcategory = new SelectElement(subcategorydropdown);
             selectsubcategory.SelectByText(subcategory);
 
-            //Identify the textbox tags and insert value and press enter
-            IWebElement tagstextbox = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[4]/div[2]/div/div/div/div/input"));
+            //Click the textbox tags and insert value and press enter
             tagstextbox.Click();       
             tagstextbox.SendKeys(tags);
             tagstextbox.SendKeys(Keys.Enter);
 
-            //Identify the Servicetype one-off service button and click
-            if (servicetype == "One-off service")
-            {
-                IWebElement oneOffService = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[5]/div[2]/div[1]/div[2]/div/input"));
-                oneOffService.Click();
-            }
+            //Select servicetye
+            Selectservicetype(servicetype);
+            //Select locationtype
+            Selectlocationtype(locationtype);
 
-            //Identify the  button 'On-site' under locationtype and click
-            if (locationtype == "On-site")
-            {
-                IWebElement onSite = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[5]/div[2]/div[1]/div[2]/div/input"));
-                onSite.Click();
-            }
-
-            //Identify the start date and insert value
-            IWebElement startDate = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[7]/div[2]/div/div[1]/div[2]/input"));
+            //Click the start date and insert value
             startDate.Click();
             startDate.SendKeys(startdate);
 
-            //Identify the textbox enddate and insert value
-            IWebElement endDate = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[7]/div[2]/div/div[1]/div[4]/input"));
+            //Click the textbox enddate and insert value
             endDate.Click();
             endDate.SendKeys(enddate);
 
             //Identify the day ,starttime and end time
-            selectdayandtime(driver,selectday,starttime,endtime);
+            selectdayandtime(selectday,starttime,endtime);
 
             //Identify the Skill Exchange button under skill trade and click
-            IWebElement selectSkillTrade = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[8]/div[2]/div/div[1]/div/input"));
             selectSkillTrade.Click();
 
             //Identify skillExcahange text box and insert value and press enter
-            IWebElement skillExchangetag = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[8]/div[4]/div/div/div/div/div/input"));
             skillExchangetag.SendKeys(skillexchange);
             skillExchangetag.SendKeys(Keys.Enter);
 
             //FileUpload
-            SamplefileUpload(driver);
+            SamplefileUpload();
 
-            //Identify the element 'hidden' in the Active
-            IWebElement hiddenbutton = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[10]/div[2]/div/div[2]/div/input"));
+            //Click the element 'hidden' in the Active
             hiddenbutton.Click();
 
-            //Identify the element save and click
+            //Click Save button
             Wait.WaitToBeClickable(driver, "//*[@id='service-listing-section']/div[2]/div/form/div[11]/div/input[1]", 3);
-            IWebElement savebutton = driver.FindElement(By.XPath("//*[@id='service-listing-section']/div[2]/div/form/div[11]/div/input[1]"));
             savebutton.Click();
+        }
+        //Common method for servicetype
+        public void Selectservicetype(string servicetype)
+        {
+            //Click the Servicetype one-off service button and click
+            if (servicetype == "One-off service")
+            {
+                oneOffService.Click();
+            }
+        }
+        //Common method for locationtype
+        public void Selectlocationtype(string locationtype)
+        {
+            //Click the  button 'On-site' under locationtype and click
+            if (locationtype == "On-site")
+            {
+                onSite.Click();
+            }
+
         }
 
         //Common method to select Day and its start and end time
-        public void selectdayandtime(IWebDriver driver,string selectday,string starttime ,string endtime)
+        public void selectdayandtime(string selectday,string starttime ,string endtime)
         {
             for (int row = 2; row <= 8; row++)
             {
@@ -125,7 +158,7 @@ namespace MarsQA_1.SpecflowPages.Pages
             }
         }
         //Method for File Upload
-       public void SamplefileUpload(IWebDriver driver)
+       public void SamplefileUpload()
         {
             IWebElement fileUpload = driver.FindElement(By.XPath("//i[@class='huge plus circle icon padding-25']"));
             fileUpload.Click();
@@ -137,53 +170,28 @@ namespace MarsQA_1.SpecflowPages.Pages
             autoIt.Send("{ENTER}");
         }
         //Validating the created shareskill
-        public void validatecreatedSharelisting(IWebDriver driver, string title)
+        public string validatemessage()
         {
-            try
-            {
-                IList<IWebElement> titlerows = driver.FindElements(By.XPath("//*[@id='listing-management-section']/div[2]/div[1]/div[1]/table/tbody/tr/td[3]"));
-                var rowcount = titlerows.Count();
-                for (int i = 1; i <= rowcount; i++)
-                {
-                    IWebElement actualtitles = driver.FindElement(By.XPath("//*[@id='listing-management-section']/div[2]/div[1]/div[1]/table/tbody/tr[" + i + "]/td[3]"));
-                    string actualtitle = actualtitles.Text;
-                    try
-                    {
-                        if (actualtitle.Equals(title))
-                        {
-                            CommonMethods.test.Log(LogStatus.Pass, "Test Passed, Updated ShareSkill Successfully");
-                            SaveScreenShotClass.SaveScreenshot(Driver.driver, "ShareSkill Updated");
-                            Assert.IsTrue(true);
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        CommonMethods.test.Log(LogStatus.Fail, " Create Shareskill validation Test Failed");
-                    }
-
-                }
-        
-            }
-            catch (Exception e)
-            {
-                CommonMethods.test.Log(LogStatus.Fail, "Test Failed", e.Message);
-            }
-
-
+            return messagedisplayed.Text;
         }
 
         //Error Message checking for create ShareSkill
-        public string  Geterrormessage(IWebDriver driver)
+        public string  Geterrormessage()
         {
-            
                 //Identify the error message
                 IWebElement message = driver.FindElement(By.XPath("//div[text()='Please complete the form correctly.']"));
                 //if (message.Text == "Please complete the form correctly.")
                 return message.Text;
-           
         }
-
-       
-      
+        public void editshareskilltitle(string newtitle)
+        {
+            // click title and input values
+            addtitle.Clear();
+            addtitle.Click();
+            addtitle.SendKeys(newtitle);
+            //Click Save button
+            Wait.WaitToBeClickable(driver, "//*[@id='service-listing-section']/div[2]/div/form/div[11]/div/input[1]", 3);
+            savebutton.Click();
+        }
     }
 }
